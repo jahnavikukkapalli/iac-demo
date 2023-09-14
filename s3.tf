@@ -1,4 +1,9 @@
-module "s3-bucket" {
-  source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.1"
+terraform {
+backend "s3" {
+bucket         = "moses-dev-terraform-bucket"
+key            = "global/s3/terraform.tfstate"
+region         = "us-east-1"
+dynamodb_table = "terraform-locks"
+encrypt        = true
+      }
 }
